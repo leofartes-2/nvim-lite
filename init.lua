@@ -495,34 +495,30 @@ end
 
 setup_treesitter()
 
-local function get_notes_path()
-  local os_release = vim.fn.system("cat /etc/os-release")
-  if os_release:match("Artix") then
-    return vim.fn.expand("~/Documents/Notes")
-  elseif os_release:match("Ubuntu") then
-    return "/mnt/c/Users/Rad/Documents/Notes"
-  else
-    error("Unsupported OS: no notes path configured")
-  end
-end
-
 local function setup_obsidian()
-  require("obsidian").setup({
-    legacy_commands = false,
-    workspaces = { { name = "Notes", path = get_notes_path() } },
-    picker = { name = "fzf-lua" },
-  })
+	-- IMPORTANT: Obsidian.nvim requires at least one *valid* workspace.
+	local workspace_path
 
-  vim.keymap.set("n", "<leader>nn", function()
-    vim.cmd("Obsidian workspace")
-    vim.defer_fn(function()
-      vim.cmd("Obsidian new")
-    end, 500)
-  end, { desc = "New note" })
-  vim.keymap.set("n", "<leader>nf", "<cmd>Obsidian quick_switch<cr>", { desc = "Find note" })
-  vim.keymap.set("n", "<leader>ns", "<cmd>Obsidian search<cr>",       { desc = "Search notes" })
-  vim.keymap.set("n", "<leader>nt", "<cmd>Obsidian today<cr>",        { desc = "Today's daily note" })
-  vim.keymap.set("n", "<leader>nw", "<cmd>Obsidian workspace<cr>",    { desc = "Switch workspace" })
+	if vim.fn.has("mac") == 1 then
+		-- Change this to your vault directory, if different.
+		-- Common alternatives:
+		--   iCloud: ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/<Vault>
+		--   Dropbox: ~/Dropbox/<Vault>
+		workspace_path = vim.fn.expand("~/Documents/Notes")
+	else
+		workspace_path = "/run/media/veracrypt64/Notes/"
+	end
+
+	require("obsidian").setup({
+		legacy_commands = false,
+		workspaces = { { name = "Notes", path = workspace_path } },
+		picker = { name = "fzf-lua" },
+	})
+
+	vim.keymap.set("n", "<leader>nn", "<cmd>Obsidian new<cr>", { desc = "New note" })
+	vim.keymap.set("n", "<leader>nf", "<cmd>Obsidian quick_switch<cr>", { desc = "Find note" })
+	vim.keymap.set("n", "<leader>ns", "<cmd>Obsidian search<cr>", { desc = "Search notes" })
+	vim.keymap.set("n", "<leader>nt", "<cmd>Obsidian today<cr>", { desc = "Today's daily note" })
 end
 
 setup_obsidian()
