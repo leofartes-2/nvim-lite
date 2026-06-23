@@ -417,7 +417,11 @@ vim.api.nvim_create_autocmd("FileType", {
 -- PLUGINS (vim.pack)
 -- ============================================================================
 vim.pack.add({
-	"https://www.github.com/folke/tokyonight.nvim",
+	-- "https://www.github.com/folke/tokyonight.nvim",
+	{
+		src = "https://github.com/catppuccin/nvim",
+		name = "catppuccin",
+	},
 	"https://www.github.com/echasnovski/mini.nvim",
 	"https://www.github.com/ibhagwan/fzf-lua",
 	"https://www.github.com/nvim-tree/nvim-tree.lua",
@@ -443,15 +447,17 @@ vim.pack.add({
 -- ============================================================================
 -- PLUGIN CONFIGS
 -- ============================================================================
-require("tokyonight").setup({
-	styles = {
-		comments = { italic = false }, -- Disable italics in comments
-	},
-})
+-- require("tokyonight").setup({
+-- styles = {
+-- comments = { italic = false }, -- Disable italics in comments
+-- },
+-- })
 
--- Like many other themes, this one has different styles, and you could load
--- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-vim.cmd.colorscheme("tokyonight-night")
+-- Styles: 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+-- vim.cmd.colorscheme("tokyonight-night")
+
+-- Styles: 'catppuccin-latte', 'catppuccin-frappe', 'catppuccin-macchiato', 'catppuccin-mocha'
+vim.cmd.colorscheme("catppuccin-nvim")
 -- vim.cmd.colorscheme("habamax")
 
 local setup_treesitter = function()

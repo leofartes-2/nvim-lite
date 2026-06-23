@@ -9,6 +9,10 @@
       "src": "https://github.com/saghen/blink.cmp",
       "version": "1.0.0 - 2.0.0"
     },
+    "catppuccin": {
+      "rev": "e068ab5f8261f23f6f71ffd8791ae40315b77b9c",
+      "src": "https://github.com/catppuccin/nvim"
+    },
     "conform.nvim": {
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -64,6 +68,10 @@
     "obsidian.nvim": {
       "rev": "08c2b8c126193139b73a193ea90f97105d2e1059",
       "src": "https://github.com/obsidian-nvim/obsidian.nvim"
+    },
+    "pi.nvim": {
+      "rev": "4458f7cef8923ba396728e7218d66002fa07426e",
+      "src": "https://www.github.com/pablopunk/pi.nvim"
     },
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
